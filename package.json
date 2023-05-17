@@ -1,0 +1,20 @@
+{
+  "name": "bot_ze_garapa",
+  "version": "0.0.1",
+  "description": "This is a bot to help Zé Garapa.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "a": "node ./src/index.js",
+    "commands": "node ./src/commands.js",
+    "message": "node ./src/send_messages.js"
+  },
+  "keywords": [],
+  "author": "Ever",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.9.0",
+    "dotenv": "^16.0.3",
+    "mysql": "^2.18.1"
+  }
+}

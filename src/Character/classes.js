@@ -1,0 +1,6 @@
+const CLASSES = [
+    {
+        Class: 'Warrior',
+        
+    }
+]

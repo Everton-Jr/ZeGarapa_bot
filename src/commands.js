@@ -1,10 +1,12 @@
 require('dotenv').config();
-const { REST, Routes, ApplicationCommandOptionType, ApplicationCommandOptionWithChoicesAndAutocompleteMixin } = require('discord.js');
-const { conn } = require('./connection.js');
-
+const { REST, Routes, ApplicationCommandOptionType } = require('discord.js');
 
 // discord commands
-const commands = [
+const COMMANDS = [
+    {
+        name: 'criar_personagem',
+        description: 'Cria um novo personagem para o jogador'
+    },
     {
         name: 'ping',
         description: 'Replies with pong!'
@@ -122,7 +124,7 @@ async function addCommands() {
         await rest.put(
             Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
             {
-                body: commands
+                body: COMMANDS
             }
         );
 
@@ -131,21 +133,3 @@ async function addCommands() {
         console.log(`There was an error: ${error}`);
     }
 };
-
-conn.query(`SELECT nome_raca FROM raca`, (error, results, fields) => {
-    if (error) {
-        throw error;
-    }
-    let racas = [];
-    for (var i=0; i<results.length; i++) {
-        let nome = results[i].nome_raca;
-        racas[i] = {
-            name: nome,
-            value: nome
-        }
-    }
-    commands[2].options.choices = racas;
-    console.log(commands[2].options.choices);
-
-    addCommands();
-});

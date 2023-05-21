@@ -1,4 +1,3 @@
-const { ApplicationCommandOptionType } = require('discord.js')
 const { RACE_CHOICES } = require('../Character/races.js')
 const { CLASS_CHOICES } = require('../Character/classes.js')
 

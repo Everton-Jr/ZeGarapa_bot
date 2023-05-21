@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { REST, Routes } = require('discord.js')
+const { REST, Routes, ApplicationCommandOptionType } = require('discord.js')
 const { COMMANDS } = require('./all_commands.js')
 
 const rest = new REST({ version:'10' }).setToken(process.env.TOKEN);

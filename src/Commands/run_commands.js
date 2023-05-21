@@ -8,10 +8,7 @@ async function AddCommands() {
     console.log('Registering slash commands...');
     try {
         await rest.put(
-            Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
-            {
-                body: COMMANDS
-            }
+            Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), { body: COMMANDS }
         );
         console.log('Slash commands were registered!\n---------------------------\n');
     } catch (error) {

@@ -26,10 +26,6 @@ const COMMANDS = [
                 choices: CLASS_CHOICES
             }
         ]
-    },
-    {
-        name: 'ping',
-        description: 'Replies with pong!'
     }
 ];
 

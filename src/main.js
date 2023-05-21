@@ -9,7 +9,7 @@ const {
 } = require('discord.js');
 const { classes } = require('./variables.js');
 const { conn } = require('./connection.js');
-require('./commands.js');
+require('./Commands/run_commands.js');
 
 // Require intents
 const client = new Client({
@@ -20,6 +20,9 @@ const client = new Client({
 		GatewayIntentBits.GuildMembers
     ]
 });
+
+// COMMANDS
+const { CreateCharacter } = require('./Character/character_create.js')
 
 // Send a message when the bot starts
 client.on('ready', (c) => {

@@ -1,7 +1,7 @@
 import { Client, GatewayIntentBits, Routes } from 'discord.js'
 import { REST } from '@discordjs/rest'
 import { config } from 'dotenv'
-import { COMMANDS } from './commands/main'
+import { COMMANDS } from './commands/main.js'
 config() // get the enviroment(dotenv) variables
 
 // Intents is what the bot can do
@@ -26,6 +26,12 @@ BOT.on('messageCreate', (message) => {
 
 BOT.on('interactionCreate', (interaction) => {
     if (!interaction.isChatInputCommand()) return;
+
+    if (interaction.commandName == 'ping') {
+        interaction.reply({
+            content: 'pong!'
+        })
+    }
 })
 
 async function main() {

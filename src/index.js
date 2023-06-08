@@ -1,6 +1,7 @@
 import { Client, GatewayIntentBits, Routes } from 'discord.js'
 import { REST } from '@discordjs/rest'
 import { config } from 'dotenv'
+import { COMMANDS } from './commands/main'
 config() // get the enviroment(dotenv) variables
 
 // Intents is what the bot can do
@@ -28,13 +29,6 @@ BOT.on('interactionCreate', (interaction) => {
 })
 
 async function main() {
-    const COMMANDS = [
-        {
-            name: 'ping',
-            description: 'Replies with pong!'
-        }
-    ]
-
     try {
         console.log('O rato está preparando os comandos...')
         await REST_.put(Routes.applicationGuildCommands(BOT_ID, SERVER_ID), {

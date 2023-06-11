@@ -1,8 +1,8 @@
-import { Client, GatewayIntentBits, Routes } from 'discord.js'
-import { REST } from '@discordjs/rest'
-import { config } from 'dotenv'
-import { COMMANDS } from './commands/main.js'
-config() // get the enviroment(dotenv) variables
+import { Client, GatewayIntentBits, Routes } from 'discord.js';
+import { REST } from '@discordjs/rest';
+import { config } from 'dotenv';
+import { COMMANDS, COMMANDS_METHODS } from './commands/main.js';
+config(); // get the enviroment(dotenv) variables
 
 // Intents is what the bot can do
 const BOT = new Client({
@@ -11,28 +11,26 @@ const BOT = new Client({
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent
     ]
-})
-const BOT_TOKEN = process.env.TOKEN
-const BOT_ID = process.env.CLIENT_ID
-const SERVER_ID = process.env.GUILD_ID
-const REST_ = new REST({ version: '10' }).setToken(BOT_TOKEN)
+});
+const BOT_TOKEN = process.env.TOKEN;
+const BOT_ID = process.env.CLIENT_ID;
+const SERVER_ID = process.env.GUILD_ID;
+const REST_ = new REST({ version: '10' }).setToken(BOT_TOKEN);
 
-BOT.on('ready', () => console.log(`O rato está pronto!`))
+BOT.on('ready', () => console.log(`O rato está pronto!`));
 
 BOT.on('messageCreate', (message) => {
-    console.log(message.content),
-    console.log(message.author.tag)
-})
+    console.log(`${message.content} -> ${message.author.tag}`)
+});
 
 BOT.on('interactionCreate', (interaction) => {
     if (!interaction.isChatInputCommand()) return;
 
-    if (interaction.commandName == 'ping') {
-        interaction.reply({
-            content: 'pong!'
-        })
+    for (let i = 0; i < COMMANDS.length; i++) {
+        let func = COMMANDS_METHODS[COMMANDS[i].name];
+        if (func) func(interaction); // check if the function for the command exist and execute it
     }
-})
+});
 
 async function main() {
     try {
@@ -44,6 +42,6 @@ async function main() {
     } catch (error) {
         console.log(error)
     }
-}
+};
 
-main()
+main();

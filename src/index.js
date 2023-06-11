@@ -24,23 +24,22 @@ BOT.on('messageCreate', (message) => {
 });
 
 BOT.on('interactionCreate', (interaction) => {
-    if (!interaction.isChatInputCommand()) return;
-
+    if (!interaction.isChatInputCommand()) return; // check if it's a "/" command
     for (let i = 0; i < COMMANDS.length; i++) {
-        let func = COMMANDS_METHODS[COMMANDS[i].name];
+        let func = COMMANDS_METHODS[COMMANDS[i].name]; // get the commandName function
         if (func) func(interaction); // check if the function for the command exist and execute it
     }
 });
 
 async function main() {
     try {
-        console.log('O rato está preparando os comandos...')
+        console.log('O rato está preparando os comandos...');
         await REST_.put(Routes.applicationGuildCommands(BOT_ID, SERVER_ID), {
             body: COMMANDS
-        })
-        BOT.login(BOT_TOKEN)
+        });
+        BOT.login(BOT_TOKEN);
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 };
 
